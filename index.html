@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
+  <title>SlideCraft — Markdown Presentations</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="SlideCraft home">
+        <span class="brand-mark">S</span>
+        <span>SlideCraft <small>MARKDOWN PRESENTATIONS</small></span>
+      </a>
+      <div class="top-actions">
+        <span id="saveStatus" class="save-status"><span class="status-dot"></span> All changes saved</span>
+        <button id="downloadBtn" class="btn btn-quiet" type="button" title="Download Markdown file">↓ <span>Export .md</span></button>
+        <button id="saveBtn" class="btn btn-primary" type="button">Save slides <span class="shortcut">Ctrl S</span></button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="intro">
+        <div>
+          <p class="eyebrow">YOUR IDEAS, IN SLIDES</p>
+          <h1>Make something <span>worth presenting.</span></h1>
+          <p class="subheading">Write Markdown on the left. Watch your presentation come to life on the right.</p>
+        </div>
+        <div class="intro-chip"><span class="live-dot"></span> Live preview</div>
+      </section>
+
+      <section class="editor-grid" aria-label="Slide editor and live preview">
+        <section class="panel editor-panel">
+          <div class="panel-heading">
+            <div class="panel-title"><span class="panel-icon code-icon">&lt;/&gt;</span><div><h2>Markdown editor</h2><p>Your presentation source</p></div></div>
+            <span class="file-pill">presentation.md</span>
+          </div>
+          <div class="editor-toolbar">
+            <span><span class="tiny-dot"></span> EDITING</span>
+            <span id="lineCount">1 line</span>
+          </div>
+          <textarea id="markdownInput" spellcheck="false" aria-label="Markdown source editor" autocapitalize="off"></textarea>
+          <div class="editor-footer">
+            <span><kbd>---</kbd> separates slides</span>
+            <button id="resetBtn" class="text-button" type="button">Reset example</button>
+          </div>
+        </section>
+
+        <section class="panel preview-panel">
+          <div class="panel-heading">
+            <div class="panel-title"><span class="panel-icon preview-icon">▣</span><div><h2>Live preview</h2><p>See your slides as you write</p></div></div>
+            <span class="live-label"><span class="live-dot"></span> LIVE</span>
+          </div>
+          <div class="slide-stage">
+            <article id="slideCanvas" class="slide-canvas" aria-live="polite"></article>
+          </div>
+          <div class="preview-controls">
+            <button id="prevBtn" class="control-btn" type="button" aria-label="Previous slide" title="Previous slide (←)">← <span>Previous</span></button>
+            <span id="slideCount" class="slide-count">1 / 3</span>
+            <div class="control-right">
+              <button id="nextBtn" class="control-btn" type="button" aria-label="Next slide" title="Next slide (→)"><span>Next</span> →</button>
+              <button id="fullscreenBtn" class="control-btn fullscreen-btn" type="button" title="Full screen (F11)">⛶ <span>Full screen</span></button>
+            </div>
+          </div>
+          <div class="preview-hint"><span>↵</span> Use your arrow keys to navigate</div>
+        </section>
+      </section>
+
+      <footer class="page-footer">
+        <span>SlideCraft <span class="footer-separator">/</span> Built with HTML, CSS &amp; JavaScript</span>
+        <span>Autosaves locally in this browser</span>
+      </footer>
+    </main>
+  </div>
+
+  <div id="presentationOverlay" class="presentation-overlay" aria-hidden="true">
+    <div class="presentation-top">
+      <span class="presentation-brand"><span class="brand-mark">S</span> SlideCraft</span>
+      <span class="presentation-tip">← → navigate <span class="footer-separator">·</span> Esc exit</span>
+    </div>
+    <div class="presentation-stage">
+      <article id="presentationCanvas" class="slide-canvas presentation-canvas" aria-live="polite"></article>
+    </div>
+    <div class="presentation-controls">
+      <button id="presentPrevBtn" class="control-btn" type="button" aria-label="Previous slide">← <span>Previous</span></button>
+      <span id="presentationCount" class="slide-count">1 / 3</span>
+      <div class="control-right">
+        <button id="presentNextBtn" class="control-btn" type="button" aria-label="Next slide"><span>Next</span> →</button>
+        <button id="exitFullscreenBtn" class="control-btn fullscreen-btn" type="button" title="Exit full screen">⛶ <span>Exit full screen</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
